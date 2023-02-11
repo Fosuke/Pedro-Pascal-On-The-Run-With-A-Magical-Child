@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <style id="/src/assets/dice.css:-css" type="text/css">/*
+    * Dice.css v1.0
+    * Code - MIT License - https://github.com/diafygi/dice-css
+    * Images - Public Domain - https://openclipart.org/detail/105931/sixsided-dice-faces-lio-01
+    */
+   .dice {
+     display: inline-block;
+     min-height: 1em;
+     padding-left: 1em;
+     background-size: 1em;
+     background-repeat: no-repeat;
+   }
+   .dice-1 {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cg transform='translate(113.25%2C-494.1)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-406.5%2C374.7)'%3E%3Crect x='588' y='240.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(337.5%2C87.5)' cx='325' cy='227.4' r='12.5' style='fill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");
+   }
+   .dice-2 {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(109.9%2C-505.1)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-415.6%2C485.6)'%3E%3Crect x='613' y='40.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(326.5%2C-148.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(398.5%2C-76.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");
+   }
+   .dice-3 {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(84.9%2C-515.5)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-290.6%2C514.9)'%3E%3Crect x='413' y='2.9' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(126.5%2C-186)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(198.5%2C-114)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(162.5%2C-150)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");
+   }
+   .dice-4 {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(90.7%2C-499.7)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-302.7%2C367.8)'%3E%3Crect x='425.5' y='265.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(139%2C76.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(139%2C148.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(211%2C76.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(211%2C148.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");
+   }
+   .dice-5 {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(89.2%2C-510.5)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-194.9%2C372.3)'%3E%3Crect x='213' y='277.9' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(-73.5%2C89)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-73.5%2C161)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-1.5%2C89)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-1.5%2C161)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-37.5%2C125)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");
+   }
+   .dice-6 {
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(86.2%2C-500.6)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-98.2%2C356.2)'%3E%3Crect x='25.5' y='290.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(-261%2C101.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-261%2C173.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-261%2C137.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-189%2C101.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-189%2C173.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-189%2C137.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+   }
+   </style>
+   <style>
+    .dice {
+  font-size: 3em;
+}
+/* your css */
+
+.v-card__text, .v-card__title {
+  word-break: normal; /* maybe !important  */
+}
+   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container>
+            <v-row>
+                <v-col>
+                    <v-card class="black white--text">
+                        <v-row>
+                            <v-col cols="12" md="6">
+                                <v-card-title class="text-h3 pb-0 d-flex justify-center">
+                                    Pedro Pascal
+                                </v-card-title>
+                                <v-card-title class="text-h5 py-0 d-flex justify-center">
+                                    On The Run
+                                </v-card-title>
+                                <v-card-title class="text-h6 py-0 d-flex justify-center">
+                                    With A Magical Child
+                                </v-card-title>
+                                <v-card-subtitle><a class="white--text" target="_blank" href="https://twitter.com/deathbybadger/status/1624063442675015682">Original tweet</a></v-card-subtitle>
+                            </v-col>
+                        </v-row>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="3" md="1">
+                    OOPS({{oops}}):
+                </v-col>
+                <v-col>
+                    <span v-for="(oopsItem, index) in oopsLevel" :key="index">
+                        <v-simple-checkbox class="d-inline" :value="oopsItem" disabled></v-simple-checkbox>
+                    </span>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="3" md="1">
+                    PURSUIT({{pursuit}}):
+                </v-col>
+                <v-col>
+                    <span v-for="(pursuitItem, index) in pursuitLevel" :key="index">
+                        <v-simple-checkbox class="d-inline" :value="pursuitItem" disabled></v-simple-checkbox>
+                    </span>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="3" md="1">
+                    HAVEN({{haven}}):
+                </v-col>
+                <v-col>
+                    <span v-for="(havenItem, index) in havenLevel" :key="index">
+                        <v-simple-checkbox class="d-inline" :value="havenItem" disabled></v-simple-checkbox>
+                    </span>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col class="d-flex justify-center">
+                    <div  :class="getDice"></div>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <div v-if="eventName == 'Search for the child...'" class="d-flex justify-center align-baseline" style="gap: 1rem">
+                        <v-btn  @click="childSearch('oops')" color="secondary">
+                            OOPS
+                        </v-btn>
+                        <v-btn  @click="childSearch('pursuit')" color="secondary">
+                            PURSUIT
+                        </v-btn>
+                    </div>
+                    <div v-else-if="eventName == 'Game Over'">
+                        <v-btn block @click="newGame" color="error">
+                            Game Over
+                        </v-btn>
+                    </div>
+                    <div v-else>
+                        <v-btn block @click="eventAction">
+                            {{eventName}}
+                        </v-btn>
+                    </div>                    
+                </v-col>
+            </v-row>
+            <v-row v-for="(logItem, index) in reverseLog" :key="index">
+                <v-col>
+                    <v-card>
+                        <v-card-title>{{logItem.message}}</v-card-title>
+                        <v-card-subtitle>{{logItem.statChange}}</v-card-subtitle>
+                        <v-card-text>
+                            <div  :class="getDiceCustom(logItem.dieRoll)"></div>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data () {
+      return {
+        oops: 0,
+        pursuit: 0,
+        haven:0,
+        diceNum: 1,
+        eventName: "Travel Event",
+        messages: [],
+        log: []
+      }
+    },
+    watch: {
+        // whenever question changes, this function will run
+        oops(newValue, oldValue) {
+            if (newValue >= 10) {
+                this.logEvent("you bumble and lose the child one too many times, or accidentally kill them with your cooking. You are left to wonder if you could have done a better job. (The answer is Yes).")
+                this.eventName = "Game Over"
+            }
+        },
+        pursuit(newValue, oldValue) {
+            if (newValue >= 10) {
+                this.logEvent("you are finally tracked down by your pursuers. Roll a d6. On a 4-6, you escape and reduce your PURSUIT score to 9. Otherwise, the child is captured, and you are left to wallow in your failure.")
+                this.eventName = 'Try to escape'
+            }
+        },
+        haven(newValue, oldValue) {
+            if (newValue >= 10) {
+                this.logEvent("you reach some kind of safe haven where you can stop running. Maybe you've even become endeared to the diminutive menace along the way? Perhaps this is where you enter your a new phase of your dad era. Who can say.")
+                this.eventName = "Game Over"
+            }
+        }
+    },
+    computed:{
+        endGame(){
+            if(this.oops >= 10){
+                return "If your OOPS score reaches 10, you bumble and lose the child one too many times, or accidentally kill them with your cooking. You are left to wonder if you could have done a better job. (The answer is Yes)."
+            }
+            if(this.pursuit >= 10){
+                return ""
+            }
+            if(this.haven >= 10){
+                return "If your HAVEN score reaches 10, you reach some kind of safe haven where you can stop running. Maybe you've even become endeared to the diminutive menace along the way? Perhaps this is where you enter your a new phase of your dad era. Who can say."
+            }
+            return ""
+        },
+        reverseMessages(){
+            let reversed_array = [];
+             
+            for (let i = this.messages.length - 1; i >= 0; i--) {
+                reversed_array.push(this.messages[i]);
+            }
+            return reversed_array
+        },
+        reverseLog(){
+            let reversed_array = [];
+             
+            for (let i = this.log.length - 1; i >= 0; i--) {
+                reversed_array.push(this.log[i]);
+            }
+            return reversed_array
+        },
+        oopsLevel(){
+            let list = []
+            for (let i = 0; i < 10; i++) {
+                if(i < this.oops){
+                    list.push(true)
+                }else{
+                    list.push(false)
+                }
+            }
+            return list
+        },
+        pursuitLevel(){
+            let list = []
+            for (let i = 0; i < 10; i++) {
+                if(i < this.pursuit){
+                    list.push(true)
+                }else{
+                    list.push(false)
+                }
+            }
+            return list
+        },
+        havenLevel(){
+            let list = []
+            for (let i = 0; i < 10; i++) {
+                if(i < this.haven){
+                    list.push(true)
+                }else{
+                    list.push(false)
+                }
+            }
+            return list
+        },
+        getDice() {
+      
+      return `dice dice-${this.diceNum}`;
+    }
+    },
+    methods: {
+        rolldice( callBack) {
+      let count = 0;
+      const timer = setInterval(() => {
+        const randomDiceNum = Math.floor(Math.random() * 6) + 1;
+        this.diceNum = randomDiceNum;;
+        if (count >= 6) {
+          clearInterval(timer);
+          callBack()
+        }
+        count += 1;
+      }, 150);
+    },
+        getDiceCustom(num) {
+      
+      return `dice dice-${num}`;
+    },
+    childSearch(stat) {
+        this.rolldice(()=>{
+            let points = Math.floor(this.diceNum/2)
+            switch(stat){
+                case 'pursuit':
+                    this.logEvent("you waste time looking for them.","PURSUIT +" + points)
+                    this.pursuit += points
+                    break;
+                case 'oops':
+                    this.logEvent("you waste time looking for them.","OOPS +" + points)
+                    this.oops += points
+                    break;
+            }
+            this.eventName = "Travel Event"
+        })
+    },
+    eventAction() {
+        this.rolldice(()=>{
+            switch(this.eventName){
+                case "Travel Event":
+                    this.travelEvent()
+                    break;
+
+                case "The Open Road...":
+                    this.roadEvent()
+                    break;
+
+                case "Passing trough Town...":
+                    this.townEvent()
+                    break;
+
+                case "Try to escape":
+                    this.escape()
+            }
+            
+        })
+    },
+    travelEvent() {
+        switch (this.diceNum){
+            case 1:
+            case 2:
+            case 3:
+                this.eventName = "The Open Road..."
+                this.messages.push("The Open Road...")
+                this.logEvent("The Open Road...")
+                break;
+            
+            case 4:
+            case 5:
+                this.eventName = "Passing trough Town..."
+                this.messages.push("Passing trough Town...")
+                this.logEvent("Passing trough Town...")
+                break;
+
+            case 6:
+                this.eventName = "Search for the child..."
+                this.messages.push( "Add 1 to your HAVEN score, then you argue with the child over something and they run away. Roll a d6, and add half that many points (round down) to your PURSUIT score, or your OOPS score (your choice) as you waste time looking for them.")
+                this.logEvent("Add 1 to your HAVEN score, then you argue with the child over something and they run away. Roll a d6, and add half that many points (round down) to your PURSUIT score, or your OOPS score (your choice)","HAVEN +1")
+                this.haven++
+        }
+    },
+    roadEvent() {
+        switch (this.diceNum){
+            case 1:
+                this.messages.push( "The child gets their hands on somekind of lethal weapon.")
+                this.logEvent("The child gets their hands on somekind of lethal weapon.","OOPS +1")
+                this.oops++
+                break;
+            case 2:
+                this.messages.push( "You crash through a mandatory checkpoint. In style. Guns blazing.")
+                this.logEvent("You crash through a mandatory checkpoint. In style. Guns blazing.","PURSUIT +1")
+                this.pursuit++
+                break;            
+            case 3:
+                this.messages.push( "The child uses their powers to save your life. It's messy. You should probably keep an eye on that.")
+                this.logEvent("The child uses their powers to save your life. It's messy. You should probably keep an eye on that.","HAVEN +1")
+                this.haven++
+                break;            
+            case 4:
+                this.messages.push( "You fall asleep on watch and the child wanders off (again)")
+                this.logEvent("You fall asleep on watch and the child wanders off (again)","OOPS +1, PURSUIT +1")
+                this.oops++
+                this.pursuit++
+                break;            
+            case 5:
+                this.messages.push( "You make food. There's a small chance it's lethal.")
+                this.logEvent("You make food. There's a small chance it's lethal.","OOPS +1")
+                this.oops++
+                break;            
+            case 6:
+                this.messages.push( "You are recognised in town, and have to make quick exit")
+                this.logEvent("You are recognised in town, and have to make quick exit","PURSUIT +2")
+                this.pursuit++
+                this.pursuit++
+                break;
+        }
+        this.eventName = "Travel Event"
+    },
+    townEvent() {
+        switch (this.diceNum){
+            case 1:
+                this.messages.push( "You barter food from a criminal. The child learns a new curse word.")
+                this.logEvent("You barter food from a criminal. The child learns a new curse word.","HAVEN +1")
+                this.haven++
+                break;
+            case 2:
+                this.messages.push( "The child uses their powers to save your life. It's messy.")
+                this.logEvent("The child uses their powers to save your life. It's messy.","PURSUIT +1")
+                this.pursuit++
+                break;            
+            case 3:
+                this.messages.push( "You shoot someone to make a point.")
+                this.logEvent("You shoot someone to make a point.","PURSUIT +1")
+                this.pursuit++
+                break;            
+            case 4:
+                this.messages.push( "The child is kidnapped by marauders, who demand money for their return")
+                this.logEvent("The child is kidnapped by marauders, who demand money for their return","OOPS +2")
+                this.oops++
+                this.oops++
+                break;            
+            case 5:
+                this.messages.push( "The child wanders off into a busy marketplace when you aren't looking")
+                this.logEvent("The child wanders off into a busy marketplace when you aren't looking","OOPS +1")
+                this.oops++
+                break;            
+            case 6:
+                this.messages.push( "An old friend betrays you, as you suspected they would. You kill them before leaving.")
+                this.logEvent("An old friend betrays you, as you suspected they would. You kill them before leaving.","PURSUIT +1")
+                this.pursuit++
+                break;
+        }
+        this.eventName = "Travel Event"
+    },
+    escape() {
+        switch (this.diceNum){
+            case 1:
+            case 2:
+            case 3:
+                this.logEvent("the child is captured, and you are left to wallow in your failure.")
+                this.eventName = "Game Over"
+                break;
+
+            case 4:
+            case 5:
+            case 6:
+                this.logEvent("you escape.","PURSUIT reduced to 9")
+                this.pursuit = 9
+                break;
+        }
+    },
+    logEvent(message,statChange) {
+        this.log.push({
+            message: message,
+            dieRoll: this.diceNum,
+            statChange: statChange
+        })
+    },
+    newGame() {
+        this.oops = 0
+        this.pursuit = 0
+        this.haven =0
+        this.diceNum = 1
+        this.eventName = "Travel Event"
+        this.messages = []
+        this.log = []
+    }
+    }
+    })
+  </script>
+</body>
+</html>
