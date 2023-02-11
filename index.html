@@ -66,10 +66,27 @@
                                 <v-card-title class="text-h6 py-0 d-flex justify-center">
                                     With A Magical Child
                                 </v-card-title>
+                            </v-col>
+                            <v-col>
+                                <v-card-title class="text-body-1 d-flex justify-center">
+                                    you are the reluctant adoptive father of a child with special abilities, who forced their way into your life through circumstances you regret. you are on the run from bad people of a nebulous nature who wish to capture the child, which your noble but grizzled heart cannot allow
+                                </v-card-title>
                                 <v-card-subtitle><a class="white--text" target="_blank" href="https://twitter.com/deathbybadger/status/1624063442675015682">RPG by Oliver Darkshire</a></v-card-subtitle>
                             </v-col>
                         </v-row>
+                        <v-btn small
+                    absolute
+                    bottom
+                    right :disabled="loading" @click="giveUp()" color="secondary">
+                        I'm done with this
+                    </v-btn>
                     </v-card>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    
+                    
                 </v-col>
             </v-row>
             <v-row>
@@ -106,24 +123,26 @@
                 <v-col class="d-flex justify-center">
                     <div  :class="getDice"></div>
                 </v-col>
+                
             </v-row>
+            
             <v-row>
                 <v-col>
                     <div v-if="eventName == 'Search for the child...'" class="d-flex justify-center align-baseline" style="gap: 1rem">
-                        <v-btn  @click="childSearch('oops')" color="secondary">
+                        <v-btn :loading="loading" :disabled="loading" @click="childSearch('oops')" color="secondary">
                             OOPS
                         </v-btn>
-                        <v-btn  @click="childSearch('pursuit')" color="secondary">
+                        <v-btn  :loading="loading" :disabled="loading" @click="childSearch('pursuit')" color="secondary">
                             PURSUIT
                         </v-btn>
                     </div>
                     <div v-else-if="eventName == 'Game Over'">
-                        <v-btn block @click="newGame" color="error">
+                        <v-btn block :loading="loading" :disabled="loading" @click="newGame" color="error">
                             Game Over
                         </v-btn>
                     </div>
                     <div v-else>
-                        <v-btn block @click="eventAction">
+                        <v-btn block :loading="loading" :disabled="loading" @click="eventAction" color="primary">
                             {{eventName}}
                         </v-btn>
                     </div>                    
@@ -159,8 +178,9 @@
         diceNum: 1,
         eventName: "Travel Event",
         messages: [],
-        log: []
-      }
+        log: [],
+        loading: false
+     }
     },
     watch: {
         // whenever question changes, this function will run
@@ -252,6 +272,7 @@
     },
     methods: {
         rolldice( callBack) {
+            this.loading = true
       let count = 0;
       const timer = setInterval(() => {
         const randomDiceNum = Math.floor(Math.random() * 6) + 1;
@@ -259,9 +280,30 @@
         if (count >= 6) {
           clearInterval(timer);
           callBack()
+          this.loading = false
         }
         count += 1;
       }, 150);
+    },
+    giveUp() {
+        this.rolldice(()=>{
+            switch (this.diceNum){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                this.logEvent("I'm done with this","OOPS increased to 10")
+                this.oops = 10
+                break;
+                
+            case 6:
+                this.logEvent("I'm done with this! Sometime later a dramatic change of heart and tearful reunion","HAVEN +6")
+                this.haven += 6
+                break;
+        }
+            
+        })
     },
         getDiceCustom(num) {
       
@@ -415,10 +457,11 @@
             case 6:
                 this.logEvent("you escape.","PURSUIT reduced to 9")
                 this.pursuit = 9
+                this.eventName = "Travel Event"
                 break;
         }
 
-this.eventName = "Travel Event"
+
 
     },
     logEvent(message,statChange) {
